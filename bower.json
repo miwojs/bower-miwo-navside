@@ -1,0 +1,20 @@
+{
+	"name": "miwo-navside",
+	"description": "Miwo navside component",
+	"version": "0.0.1",
+	"authors": [
+		"Dusan Kmet <morlokdk@gmail.com>"
+	],
+	"main": [
+		"css/miwo-navside.css",
+		"css/miwo-navside.min.css",
+		"js/miwo-navside.js",
+		"js/miwo-navside.min.js",
+		"less/index.js"
+	],
+	"ignore": [
+	],
+	"dependencies": {
+		"miwo": "latest"
+	}
+}
