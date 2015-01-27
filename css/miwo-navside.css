@@ -1,6 +1,6 @@
 .navside {
   background: #f8f8f8;
-  font-size: 13px;
+  font-size: 14px;
 }
 .navside .navside-item {
   border-bottom: 1px solid #d9d9d9;
@@ -27,6 +27,9 @@
   left: 10px;
   top: 13px;
   color: #337ab7;
+}
+.navside .navside-item .badge {
+  float: right;
 }
 .navside .navside-group {
   border-bottom: 1px solid #d9d9d9;
@@ -60,6 +63,7 @@
   border-top-color: transparent;
 }
 .navside .navside-items .navside-item a {
+  font-size: 12px;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 10px;

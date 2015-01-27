@@ -1,9 +1,10 @@
-.navside{background:#f8f8f8;font-size:13px}
+.navside{background:#f8f8f8;font-size:14px}
 .navside .navside-item{border-bottom:1px solid #d9d9d9;border-left:4px solid transparent}
 .navside .navside-item a{text-decoration:none;color:#777;display:block;padding:10px 10px 10px 34px;white-space:nowrap;overflow:hidden;position:relative}
 .navside .navside-item.active,.navside .navside-item:hover{background:#fff}
 .navside .navside-item.active{border-left-color:#337ab7}
 .navside .navside-item .navside-icon{position:absolute;left:10px;top:13px;color:#337ab7}
+.navside .navside-item .badge{float:right}
 .navside .navside-group,.navside .navside-group:last-child{border-bottom:1px solid #d9d9d9}
 .navside .navside-group .navside-item{border:none}
 .navside .navside-group .switchicon{float:right;color:#337ab7}
@@ -11,5 +12,5 @@
 .navside .navside-items .navside-item{background:inherit;border:1px solid transparent}
 .navside .navside-items .navside-item.active,.navside .navside-items .navside-item:hover{background:#fff;border-color:#e7e7e7;border-radius:3px}
 .navside .navside-items .navside-item.active+.navside-item,.navside .navside-items .navside-item:hover+.navside-item{border-top-color:transparent}
-.navside .navside-items .navside-item a{padding-top:3px;padding-bottom:3px;padding-left:10px}
+.navside .navside-items .navside-item a{font-size:12px;padding-top:3px;padding-bottom:3px;padding-left:10px}
 .navside .navside-items .navside-item a i{display:none}

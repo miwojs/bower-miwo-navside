@@ -1,6 +1,6 @@
 @brand-primary: #337ab7;
 
-@navside-size: 13px;
+@navside-size: 14px;
 @navside-color: #777;
 @navside-bg: #f8f8f8;
 @navside-border: darken(@navside-bg, 12%);
@@ -38,6 +38,9 @@
 			top: 13px;
 			color: @navside-active-color;
 		}
+		.badge {
+			float: right;
+		}
 	}
 	.navside-group {
 		border-bottom: 1px solid @navside-border;
@@ -67,6 +70,7 @@
 				}
 			}
 			a {
+				font-size: 12px;
 				padding-top: @navside-padding-small;
 				padding-bottom: @navside-padding-small;
 				padding-left: @navside-padding-large;

@@ -22,8 +22,15 @@ Item = (function(_super) {
 
   Item.prototype.role = 'presentation';
 
+  Item.prototype.badge = null;
+
   Item.prototype.doRender = function() {
-    this.el.set('html', '<a href="#" role="menuitem"><i class="navside-icon ' + this.icon + '"></i><span>' + this.text + '</span></a>');
+    var inner;
+    inner = '<i class="navside-icon ' + this.icon + '"></i><span>' + this.text + '</span>';
+    if (this.badge) {
+      inner += '<span class="badge">' + this.badge + '</span>';
+    }
+    this.el.set('html', '<a href="#" role="menuitem">' + inner + '</a>');
   };
 
   Item.prototype.afterRender = function() {
@@ -80,10 +87,8 @@ ItemGroup = (function(_super) {
 
   ItemGroup.prototype.role = 'presentation';
 
-  ItemGroup.prototype.addItem = function(name, text) {
-    return this.add(name, new Item({
-      text: text
-    }));
+  ItemGroup.prototype.addItem = function(name, config) {
+    return this.add(name, new Item(config));
   };
 
   ItemGroup.prototype.beforeRender = function() {
@@ -153,16 +158,12 @@ Navigation = (function(_super) {
     this.mon(window, 'hashchange', 'onWindowHashChange');
   };
 
-  Navigation.prototype.addItem = function(name, text) {
-    return this.add(name, new Item({
-      text: text
-    }));
+  Navigation.prototype.addItem = function(name, config) {
+    return this.add(name, new Item(config));
   };
 
-  Navigation.prototype.addItemGroup = function(name, text) {
-    return this.add(name, new ItemGroup({
-      text: text
-    }));
+  Navigation.prototype.addItemGroup = function(name, config) {
+    return this.add(name, new ItemGroup(config));
   };
 
   Navigation.prototype.addedComponentDeep = function(component) {
