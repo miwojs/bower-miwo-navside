@@ -1,16 +1,20 @@
-.navside{background:#f8f8f8;font-size:14px}
-.navside .navside-item{border-bottom:1px solid #d9d9d9;border-left:4px solid transparent}
-.navside .navside-item a{text-decoration:none;color:#777;display:block;padding:10px 10px 10px 34px;white-space:nowrap;overflow:hidden;position:relative}
-.navside .navside-item.active,.navside .navside-item:hover{background:#fff}
-.navside .navside-item.active{border-left-color:#337ab7}
-.navside .navside-item .navside-icon{position:absolute;left:10px;top:13px;color:#337ab7}
-.navside .navside-item .badge{float:right}
-.navside .navside-group,.navside .navside-group:last-child{border-bottom:1px solid #d9d9d9}
-.navside .navside-group .navside-item{border:none}
-.navside .navside-group .switchicon{float:right;color:#337ab7}
-.navside .navside-items{padding:0 10px 10px 20px}
-.navside .navside-items .navside-item{background:inherit;border:1px solid transparent}
-.navside .navside-items .navside-item.active,.navside .navside-items .navside-item:hover{background:#fff;border-color:#e7e7e7;border-radius:3px}
-.navside .navside-items .navside-item.active+.navside-item,.navside .navside-items .navside-item:hover+.navside-item{border-top-color:transparent}
-.navside .navside-items .navside-item a{font-size:12px;padding-top:3px;padding-bottom:3px;padding-left:10px}
-.navside .navside-items .navside-item a i{display:none}
+.navside{background:#f8f8f8;font-size:12px}
+.navside-header{padding:20px 10px 5px;border-bottom:1px solid #d9d9d9}
+.navside-header span{color:#777;font-weight:400;text-transform:uppercase}
+.navside-item{text-transform:uppercase;border-bottom:1px solid #d9d9d9;border-left:4px solid transparent;-webkit-transition:all 100ms ease-in-out;-moz-transition:all 100ms ease-in-out;-ms-transition:all 100ms ease-in-out;-o-transition:all 100ms ease-in-out;transition:all 100ms ease-in-out}
+.navside-item a{background:0 0;text-decoration:none;color:#777;display:block;padding:10px 10px 10px 34px;white-space:nowrap;overflow:hidden;position:relative;-webkit-transition:all 200ms ease-in-out;-moz-transition:all 200ms ease-in-out;-ms-transition:all 200ms ease-in-out;-o-transition:all 200ms ease-in-out;transition:all 200ms ease-in-out}
+.navside-item a i{font-size:14.4px}
+.navside-item.active,.navside-item:hover{background:#fff}
+.navside-item.active a,.navside-item:hover a{color:#337ab7}
+.navside-item.active{border-left-color:#337ab7}
+.navside-item .navside-icon{position:absolute;left:10px;top:50%;margin-top:-7.2px}
+.navside-item .badge{float:right;background:#ebebeb;color:#777;text-shadow:none}
+.navside-group,.navside-group:last-child{border-bottom:1px solid #d9d9d9}
+.navside-group .navside-item{border:none}
+.navside-group .switchicon{float:right;color:#337ab7}
+.navside-items{padding:0 10px 10px 20px}
+.navside-items .navside-item{background:inherit;border:1px solid transparent}
+.navside-items .navside-item.active,.navside-items .navside-item:hover{background:#fff;border-color:#e7e7e7;border-radius:3px}
+.navside-items .navside-item.active+.navside-item,.navside-items .navside-item:hover+.navside-item{border-top-color:transparent}
+.navside-items .navside-item a{font-size:12px;padding-top:3px;padding-bottom:3px;padding-left:10px}
+.navside-items .navside-item a i{display:none}

@@ -1,4 +1,33 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var Header,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+Header = (function(_super) {
+  __extends(Header, _super);
+
+  function Header() {
+    return Header.__super__.constructor.apply(this, arguments);
+  }
+
+  Header.prototype.xtype = 'navsideheader';
+
+  Header.prototype.baseCls = 'navside-header';
+
+  Header.prototype.text = '';
+
+  Header.prototype.doRender = function() {
+    this.el.set('html', '<span>' + this.text + '</span>');
+  };
+
+  return Header;
+
+})(Miwo.Component);
+
+module.exports = Header;
+
+
+},{}],2:[function(require,module,exports){
 var Item,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -24,23 +53,23 @@ Item = (function(_super) {
 
   Item.prototype.badge = null;
 
-  Item.prototype.doRender = function() {
-    var inner;
-    inner = '<i class="navside-icon ' + this.icon + '"></i><span>' + this.text + '</span>';
-    if (this.badge) {
-      inner += '<span class="badge">' + this.badge + '</span>';
-    }
-    this.el.set('html', '<a href="#" role="menuitem">' + inner + '</a>');
-  };
-
-  Item.prototype.afterRender = function() {
-    Item.__super__.afterRender.apply(this, arguments);
+  Item.prototype.beforeRender = function() {
+    Item.__super__.beforeRender.apply(this, arguments);
     this.el.on('click', (function(_this) {
       return function(event) {
         event.stop();
         _this.emit('click', _this);
       };
     })(this));
+  };
+
+  Item.prototype.doRender = function() {
+    var inner;
+    inner = '<i class="' + this.icon + '"></i><span>' + this.text + '</span>';
+    if (this.badge) {
+      inner += '<span class="badge">' + this.badge + '</span>';
+    }
+    this.el.set('html', '<a href="#" role="menuitem">' + inner + '</a>');
   };
 
   Item.prototype.setActive = function(active, silent) {
@@ -54,6 +83,11 @@ Item = (function(_super) {
     }
   };
 
+  Item.prototype.setBadge = function(badge) {
+    this.badge = badge;
+    this.redraw();
+  };
+
   return Item;
 
 })(Miwo.Component);
@@ -61,7 +95,7 @@ Item = (function(_super) {
 module.exports = Item;
 
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 var Item, ItemGroup,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -93,7 +127,7 @@ ItemGroup = (function(_super) {
 
   ItemGroup.prototype.beforeRender = function() {
     ItemGroup.__super__.beforeRender.apply(this, arguments);
-    this.el.set('html', '<div class="navside-item"><a role="menuitem" miwo-events="click:onItemClick" href="#"><i class="navside-icon ' + this.icon + '"></i><span>' + this.text + '</span><i miwo-reference="switchiconEl" class="switchicon glyphicon"></i></a></div>' + '<div class="navside-items" role="menu" miwo-reference="contentEl"></div>');
+    this.el.set('html', '<div class="navside-item"><a role="menuitem" miwo-events="click:onItemClick" href="#"><i class="' + this.icon + '"></i><span>' + this.text + '</span><i miwo-reference="switchEl" class="switch glyphicon"></i></a></div>' + '<div class="navside-items" role="menu" miwo-reference="contentEl"></div>');
   };
 
   ItemGroup.prototype.afterRender = function() {
@@ -113,8 +147,8 @@ ItemGroup = (function(_super) {
   ItemGroup.prototype.setOpened = function(opened, silent) {
     this.opened = opened;
     this.contentEl.setVisible(opened);
-    this.switchiconEl.toggleClass('glyphicon-chevron-down', !opened);
-    this.switchiconEl.toggleClass('glyphicon-chevron-up', opened);
+    this.switchEl.toggleClass('glyphicon-chevron-down', !opened);
+    this.switchEl.toggleClass('glyphicon-chevron-up', opened);
     if (!silent) {
       if (opened) {
         this.emit('open', this);
@@ -131,10 +165,12 @@ ItemGroup = (function(_super) {
 module.exports = ItemGroup;
 
 
-},{"./Item":1}],3:[function(require,module,exports){
-var Item, ItemGroup, Navigation,
+},{"./Item":2}],4:[function(require,module,exports){
+var Header, Item, ItemGroup, Navigation,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+Header = require('./Header');
 
 Item = require('./Item');
 
@@ -153,6 +189,8 @@ Navigation = (function(_super) {
 
   Navigation.prototype.role = 'navigation';
 
+  Navigation.prototype.scrollable = true;
+
   Navigation.prototype.afterInit = function() {
     Navigation.__super__.afterInit.apply(this, arguments);
     this.mon(window, 'hashchange', 'onWindowHashChange');
@@ -164,6 +202,10 @@ Navigation = (function(_super) {
 
   Navigation.prototype.addItemGroup = function(name, config) {
     return this.add(name, new ItemGroup(config));
+  };
+
+  Navigation.prototype.addHeader = function(name, config) {
+    return this.add(name, new Header(config));
   };
 
   Navigation.prototype.addedComponentDeep = function(component) {
@@ -194,6 +236,9 @@ Navigation = (function(_super) {
     if (this.active !== item) {
       item.setActive(true);
     }
+    if (item.target && !this.preventHashChange) {
+      miwo.redirect(item.target);
+    }
   };
 
   Navigation.prototype.onItemActive = function(item) {
@@ -205,17 +250,14 @@ Navigation = (function(_super) {
     }
     this.active = item;
     this.emit('active', this, item);
-    if (item.target && !this.preventHashChange) {
-      document.location.hash = item.target;
-    }
   };
 
-  Navigation.prototype.onItemGroupOpen = function(itemgroup) {
-    this.emit('open', this, itemgroup);
+  Navigation.prototype.onItemGroupOpen = function(itemGroup) {
+    this.emit('open', this, itemGroup);
   };
 
-  Navigation.prototype.onItemGroupClose = function(itemgroup) {
-    this.emit('close', this, itemgroup);
+  Navigation.prototype.onItemGroupClose = function(itemGroup) {
+    this.emit('close', this, itemGroup);
   };
 
   Navigation.prototype.onWindowHashChange = function() {
@@ -232,9 +274,7 @@ Navigation = (function(_super) {
     if (!target) {
       return;
     }
-    _ref = this.findComponents(true, {
-      xtype: 'navsideitem'
-    });
+    _ref = this.findAll('navsideitem');
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       component = _ref[_i];
       if (target.indexOf(component.target) >= 0) {
@@ -248,12 +288,12 @@ Navigation = (function(_super) {
 
   return Navigation;
 
-})(Miwo.Container);
+})(Miwo.panel.Pane);
 
 module.exports = Navigation;
 
 
-},{"./Item":1,"./ItemGroup":2}],4:[function(require,module,exports){
+},{"./Header":1,"./Item":2,"./ItemGroup":3}],5:[function(require,module,exports){
 Miwo.navside = {};
 
 Miwo.navside.Navigation = require('./Navigation');
@@ -262,5 +302,7 @@ Miwo.navside.Item = require('./Item');
 
 Miwo.navside.ItemGroup = require('./ItemGroup');
 
+Miwo.navside.Header = require('./Header');
 
-},{"./Item":1,"./ItemGroup":2,"./Navigation":3}]},{},[4])
+
+},{"./Header":1,"./Item":2,"./ItemGroup":3,"./Navigation":4}]},{},[5])

@@ -10,7 +10,7 @@
 		"css/miwo-navside.min.css",
 		"js/miwo-navside.js",
 		"js/miwo-navside.min.js",
-		"less/index.js"
+		"less/*.less"
 	],
 	"ignore": [
 	],

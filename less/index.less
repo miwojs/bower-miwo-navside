@@ -1,73 +1,91 @@
 @brand-primary: #337ab7;
 
 @navside-size: 14px;
-@navside-color: #777;
+@navside-size-icon: @navside-size*1.2;
+@navside-color: #747474;
 @navside-bg: #f8f8f8;
 @navside-border: darken(@navside-bg, 12%);
 @navside-border-lighter: darken(@navside-bg, 6.5%);
-@navside-active-color: @brand-primary;
-@navside-active-bg: #fff;
-@navside-padding-large: 10px;
+@navside-padding-large: @navside-size;
 @navside-padding-small: 3px;
-@navside-padding-icon: 34px;
+@navside-padding-icon: @navside-size-icon;
+@navside-header-color: @navside-color;
+@navside-active-border: @brand-primary;
+@navside-active-color: darken(@navside-color, 15%);
+@navside-active-bg: #fff;
+@navside-badge-bg: darken(@navside-bg, 5%);
+@navside-badge-color: @navside-color;
+
+.animate (@animation) {
+	-webkit-transition: @animation;
+	-moz-transition: @animation;
+	-ms-transition: @animation;
+	-o-transition: @animation;
+	transition: @animation;
+}
 
 .navside {
 	background: @navside-bg;
 	font-size: @navside-size;
-	.navside-item {
+	&-header {
+		padding: 20px 10px 5px 10px;
 		border-bottom: 1px solid @navside-border;
-		border-left: 4px solid transparent;
+		span {
+			color: @navside-header-color;
+			font-weight: normal;
+			text-transform: uppercase;
+		}
+	}
+	&-item {
+		border-left: 6px solid transparent;
+		.animate(all 100ms ease-in-out);
 		a {
 			text-decoration: none;
 			color: @navside-color;
 			display: block;
-			padding: @navside-padding-large @navside-padding-large @navside-padding-large @navside-padding-icon;
+			padding: @navside-padding-large @navside-padding-large @navside-padding-large @navside-padding-icon*2+@navside-padding-large;
 			white-space: nowrap;
 			overflow: hidden;
 			position: relative;
+			.animate(all 200ms ease-in-out);
+			i {
+				position: absolute;
+				left: @navside-size-icon;
+				top: 50%;
+				margin-top: -(@navside-size-icon/2);
+				font-size: @navside-size-icon;
+			}
 		}
 		&:hover, &.active {
 			background: @navside-active-bg;
+			a {
+				color: @navside-active-color;
+			}
 		}
 		&.active {
-			border-left-color: @brand-primary;
-		}
-		.navside-icon {
-			position: absolute;
-			left: 10px;
-			top: 13px;
-			color: @navside-active-color;
+			border-left-color: @navside-active-border;
 		}
 		.badge {
 			float: right;
+			background: @navside-badge-bg;
+			color: @navside-badge-color;
+			text-shadow: none;
 		}
 	}
-	.navside-group {
-		border-bottom: 1px solid @navside-border;
-		&:last-child {
-			border-bottom: 1px solid @navside-border;
-		}
-		.navside-item {
-			border: none;
-		}
-		.switchicon {
+	&-group {
+		.switch {
 			float: right;
 			color: @navside-active-color;
 		}
 	}
-	.navside-items {
+	&-items {
 		padding: 0px 10px 10px 20px;
 		.navside-item {
-			border: none;
 			background: inherit;
-			border: 1px solid transparent;
 			&.active, &:hover {
 				background: @navside-active-bg;
 				border-color: @navside-border-lighter;
 				border-radius: 3px;
-				& + .navside-item {
-					border-top-color: transparent;
-				}
 			}
 			a {
 				font-size: 12px;
