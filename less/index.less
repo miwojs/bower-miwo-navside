@@ -8,7 +8,7 @@
 @navside-border-lighter: darken(@navside-bg, 6.5%);
 @navside-padding-large: @navside-size;
 @navside-padding-small: 3px;
-@navside-padding-icon: @navside-size-icon;
+@navside-padding-icon: @navside-size-icon - 4;
 @navside-header-color: @navside-color;
 @navside-active-border: @brand-primary;
 @navside-active-color: darken(@navside-color, 15%);
@@ -43,14 +43,14 @@
 			text-decoration: none;
 			color: @navside-color;
 			display: block;
-			padding: @navside-padding-large @navside-padding-large @navside-padding-large @navside-padding-icon*2+@navside-padding-large;
+			padding: @navside-padding-large @navside-padding-large @navside-padding-large @navside-size-icon*2+@navside-padding-large;
 			white-space: nowrap;
 			overflow: hidden;
 			position: relative;
 			.animate(all 200ms ease-in-out);
 			i {
 				position: absolute;
-				left: @navside-size-icon;
+				left: @navside-padding-icon;
 				top: 50%;
 				margin-top: -(@navside-size-icon/2);
 				font-size: @navside-size-icon;
